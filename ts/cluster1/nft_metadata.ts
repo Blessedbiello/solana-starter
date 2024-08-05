@@ -18,26 +18,26 @@ umi.use(signerIdentity(signer));
         // https://docs.metaplex.com/programs/token-metadata/changelog/v1.0#json-structure
 
         // const image = ???
-        // const metadata = {
-        //     name: "?",
-        //     symbol: "?",
-        //     description: "?",
-        //     image: "?",
-        //     attributes: [
-        //         {trait_type: '?', value: '?'}
-        //     ],
-        //     properties: {
-        //         files: [
-        //             {
-        //                 type: "image/png",
-        //                 uri: "?"
-        //             },
-        //         ]
-        //     },
-        //     creators: []
-        // };
-        // const myUri = ???
-        // console.log("Your image URI: ", myUri);
+        const metadata = {
+            name: "Planet of the Primes",
+            symbol: "POTP",
+            description: "A Planet rugs",
+            image: "",
+            // attributes: [
+            //     {trait_type: '?', value: '?'}
+            // ],
+            properties: {
+                files: [
+                    {
+                        type: "image/png",
+                        uri: "?"
+                    },
+                ]
+            },
+            creators: []
+        };
+        const myUri = ???
+        console.log("Your image URI: ", myUri);
     }
     catch(error) {
         console.log("Oops.. Something went wrong", error);
