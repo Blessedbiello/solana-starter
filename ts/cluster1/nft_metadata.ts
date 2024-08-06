@@ -17,26 +17,30 @@ umi.use(signerIdentity(signer));
         // Follow this JSON structure
         // https://docs.metaplex.com/programs/token-metadata/changelog/v1.0#json-structure
 
-        // const image = ???
+        const image = "https://arweave.net/wpLwVSWP3pl2wis5ohsG2tzqAyxoNJX7GMCVCwv7dOQ"
         const metadata = {
             name: "Planet of the Primes",
             symbol: "POTP",
-            description: "A Planet rugs",
-            image: "",
-            // attributes: [
-            //     {trait_type: '?', value: '?'}
-            // ],
+            description: "A Planet of flying rugs",
+            image,
+            animation_url: "https://arweave.net/CSA5LK2O78Jx-mb5qkXqKtVGNM2j_WRmREDQQovswL4",
+            attributes: [
+                { trait_type: "wen", value: "now" },
+                { trait_type: "lost_funds", value: "all" },
+                { trait_type: "suspicious", value: "yes" },
+                { trait_type: "animated", value: "true" },
+            ],
             properties: {
                 files: [
                     {
                         type: "image/png",
-                        uri: "?"
+                        uri: image
                     },
                 ]
             },
             creators: []
         };
-        const myUri = ???
+        const myUri = await umi.uploader.uploadJson(metadata);
         console.log("Your metadata URI: ", myUri);
     }
     catch(error) {

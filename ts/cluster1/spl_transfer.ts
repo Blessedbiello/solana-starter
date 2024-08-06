@@ -10,18 +10,41 @@ const commitment: Commitment = "confirmed";
 const connection = new Connection("https://api.devnet.solana.com", commitment);
 
 // Mint address
-const mint = new PublicKey("<mint address>");
+const mint = new PublicKey("6DD4thYfK5g8ujsXow5sMJLLRUMdCPFukCc5jKmmD5pG");
 
 // Recipient address
-const to = new PublicKey("<receiver address>");
+const to = new PublicKey("7wxVFNuK35shzgrF1wjdrTmfkUd3SSkRCXrZqxYjQVDX");
 
 (async () => {
     try {
         // Get the token account of the fromWallet address, and if it does not exist, create it
+        const tokenAccontFrom = await getOrCreateAssociatedTokenAccount(
+            connection,
+            keypair,
+            mint,
+            keypair.publicKey
+        );
 
         // Get the token account of the toWallet address, and if it does not exist, create it
+        const tokenAccountTo = await getOrCreateAssociatedTokenAccount(
+            connection,
+            keypair,
+            mint,
+            to
+        );
+        // transfer to shrinat wallet
+        const transferTx = await transfer(
+            connection,
+            keypair,
+            tokenAccontFrom.address,
+            tokenAccountTo.address,
+            keypair.publicKey,
+            5 * 1_000_000_000
+        );
 
-        // Transfer the new token to the "toTokenAccount" we just created
+        console.log(`Your Transfer txid: ${transferTx}`);
+        console.log(`Transaction: https://explorer.solana.com/tx/${transferTx}?cluster=devnet`);
+
     } catch(e) {
         console.error(`Oops, something went wrong: ${e}`)
     }

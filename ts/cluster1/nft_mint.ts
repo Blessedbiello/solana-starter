@@ -16,13 +16,18 @@ umi.use(mplTokenMetadata())
 const mint = generateSigner(umi);
 
 (async () => {
-    let tx = createNft({ mint,
+    let tx = createNft( umi, { 
+        mint,
+        name: "Planet of the Primes",
+        symbol: "POTP",
+        uri: "https://arweave.net/Ao_bmNwJF8JOSSt44d1Qfcge-ejHlm1Eft1U468NLUE",
+        sellerFeeBasisPoints: percentAmount(9)
         
     })
     let result = await tx.sendAndConfirm(umi);
-    // const signature = base58.encode(result.signature);
+    const signature = base58.encode(result.signature);
     
-    // console.log(`Succesfully Minted! Check out your TX here:\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`)
+    console.log(`Succesfully Minted! Check out your TX here:\nhttps://explorer.solana.com/tx/${signature}?cluster=devnet`)
 
     console.log("Mint Address: ", mint.publicKey);
 })();
